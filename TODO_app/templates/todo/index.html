@@ -5,17 +5,17 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Template • TodoMVC</title>
+		<title>TO-DO Web</title>
 		<link rel="stylesheet" href="node_modules/todomvc-common/base.css">
 		<link rel="stylesheet" href="node_modules/todomvc-app-css/index.css">
 		<!-- CSS overrides - remove if you don't need it -->
 		<link rel="stylesheet" href="{% static 'todo/css/index.css' %}">
 	</head>
-	<body>
+	<body style="background-color: #D4DDFF;">
 		<section class="todoapp">
 			<header class="header">
-				<h1>TO-DO App</h1>
-				<form action="{% url 'create' %}" method="POST">
+				<h1 style="color: #A4B7FF">TO-DO List</h1>
+				<form action="{% url 'todo:create' %}" method="POST">
 					{% csrf_token %}
 					<input class="new-todo" placeholder="What needs to be done?" name="title" autofocus>
 				</form>
@@ -32,11 +32,11 @@
 						{% for item in items %}
 							<li {% if item.status %} class="completed" {% endif %}>
 								<div class="view">
-									<form action="{% url 'update' item.id %}" method="POST">
+									<form action="{% url 'todo:update' item.id %}" method="POST">
 										{% csrf_token %}
 										<input onclick="this.form.submit()" class="toggle" type="checkbox" {% if item.status %} checked {% endif %}>
 										<label>{{ item.title }}</label>
-										<a href="{% url 'delete' item.id %}" class="destroy"></a>
+										<a href="{% url 'todo:delete' item.id %}" class="destroy" style="color: #A4B7FF"></a>
 									</form>
 
 								</div>
@@ -52,20 +52,20 @@
 				<!-- Remove this if you don't implement routing -->
 				<ul class="filters">
 					<li>
-						{% url 'index' as index_url %}
-						<a {% if request.path == index_url %} class="selected" {% endif %} href="{% url 'index' %}">All</a>
+						{% url 'todo:index' as index_url %}
+						<a {% if request.path == index_url %} class="selected" {% endif %} href="{% url 'todo:index' %}">All</a>
 					</li>
 					<li>
-						{% url 'pending' as pending_url %}
-						<a {% if request.path == pending_url %} class="selected" {% endif %} href="{% url 'pending' %}">Active</a>
+						{% url 'todo:pending' as pending_url %}
+						<a {% if request.path == pending_url %} class="selected" {% endif %} href="{% url 'todo:pending' %}">Active</a>
 					</li>
 					<li>
-						{% url 'done' as done_url %}
-						<a {% if request.path == done_url %} class="selected" {% endif %} href="{% url 'done' %}">Complete</a>
+						{% url 'todo:done' as done_url %}
+						<a {% if request.path == done_url %} class="selected" {% endif %} href="{% url 'todo:done' %}">Complete</a>
 					</li>
 				</ul>
 				<!-- Hidden if no completed items are left ↓ -->
-				<a href="{% url 'delete_all' %}" class="clear-completed">Delete all</a>
+				<a href="{% url 'todo:delete_all' %}" class="clear-completed">Delete all</a>
 			</footer>
 		</section>
 		<footer class="info">

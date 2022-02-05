@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'home', 'project_pertama',
+    'home', 'EzShop',
     'TODO_app.apps.TodoAppConfig',
 ]
 
