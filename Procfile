@@ -1,1 +1,1 @@
-web: gunicorn SXC.wsgi --log-file=-
+web: gunicorn PortofolioOfMyself.wsgi --log-file=-
