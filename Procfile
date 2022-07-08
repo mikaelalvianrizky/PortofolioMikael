@@ -1,0 +1,1 @@
+web: gunicorn SXC.wsgi --log-file=-
